@@ -1,0 +1,16 @@
+sudo apt install ca-certificates apt-transport-https
+
+
+OPNsense Arch overview
+https://docs.opnsense.org/development/architecture.html
+
+How To Install Phalcon PHP on Debian 9
+https://tecadmin.net/install-phalcon-php-on-debian-9-stretch/
+
+https://docs.phalconphp.com/en/3.4/installation
+
+Notes on Routing API
+https://docs.opnsense.org/development/frontend/routing.html
+
+Config file root
+/home/tsingh/RaspbarryPi/OPNsense/usr/local/etc/

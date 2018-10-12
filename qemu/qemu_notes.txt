@@ -1,0 +1,45 @@
+The latest version of qemu:
+
+Prereqs:
+libghc-zlib-dev
+libglib2.0-dev
+libfdt-dev
+libglibmm-2.4-dev
+libpixman-1-dev
+libguestfs-tools
+libusb-dev
+libgusb-dev
+bison
+flex
+checkinstall
+
+sudo apt-get build-dep qemu
+
+wget https://download.qemu.org/qemu-3.0.0.tar.xz
+tar xvJf qemu-3.0.0.tar.xz
+cd qemu-3.0.0
+./configure
+make
+sudo checkinstall make install
+
+https://translatedcode.wordpress.com/2018/04/25/debian-on-qemus-raspberry-pi-3-model/
+
+
+
+sudo apt-get install gcc-aarch64-linux-gnu libglib2.0-dev libfdt-dev libpixman-1-dev zlib1g-dev libaio-dev libbluetooth-dev libbrlapi-dev libbz2-dev  libcap-dev libcap-ng-dev libcurl4-gnutls-dev libgtk-3-dev libibverbs-dev libjpeg8-dev libncurses5-dev libnuma-dev librbd-dev librdmacm-dev libsasl2-dev libsdl1.2-dev libseccomp-dev libsnappy-dev libssh2-1-dev libvde-dev libvdeplug-dev  libxen-dev liblzo2-dev valgrind xfslibs-dev
+git-email libaio-dev libbluetooth-dev libbrlapi-dev libbz2-dev libcap-dev libcap-ng-dev libcurl4-gnutls-dev libgtk-3-dev libibverbs-dev libjpeg8-dev libncurses5-dev libnuma-dev librbd-dev librdmacm-dev libsasl2-dev libsdl1.2-dev libseccomp-dev libsnappy-dev libssh2-1-dev libvde-dev libvdeplug-dev libvte-2.91-dev libvted-3-dev libxen-dev liblzo2-dev valgrind xfslibs-dev libnfs-dev libiscsi-dev
+
+
+wget http://people.linaro.org/~alex.bennee/images/aarch64-linux-3.15rc2-buildroot.img
+./aarch64-softmmu/qemu-system-aarch64 -machine virt -cpu cortex-a57 -machine type=virt -nographic -smp 1 -m 2048 -kernel aarch64-linux-3.15rc2-buildroot.img  --append "console=ttyAMA0"
+
+./aarch64-softmmu/qemu-system-aarch64 -machine virt -cpu cortex-a57 -machine type=virt -nographic -smp 1 -m 2048 -kernel aarch64-linux-3.15rc2-buildroot.img --append "console=ttyAMA0" -fsdev local,id=r,path=/home/alex/lsrc/qemu/rootfs/trusty-core,security_model=none -device virtio-9p-device,fsdev=r,mount_tag=r
+
+qemu-system-aarch64 \
+  -kernel bootpart/vmlinuz-4.14.0-3-arm64 \
+  -initrd bootpart/initrd.img-4.14.0-3-arm64 \
+  -dtb bootpart/bcm2837-rpi-3-b.dtb \
+  -M raspi3 -m 1024 \
+  -serial stdio \
+  -append "rw earlycon=pl011,0x3f201000 console=ttyAMA0 loglevel=8 root=/dev/mmcblk0p2 fsck.repair=yes net.ifnames=0 rootwait memtest=1" \
+  -drive file=2018-01-08-raspberry-pi-3-buster-PREVIEW.img,format=raw,if=sd
